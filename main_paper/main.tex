@@ -35,6 +35,7 @@ Furthermore, an intuitive understanding of Fourier Transformations will reveal t
 \end{abstract}
 \maketitle
 
+\section{Introduction}
 Famous mathematician and educator Gilbert Strang stated that the FFT is "the most important numerical algorithm of our lifetime"\cite{strang}.
 This was in 1994 before the invention of the iPhone, and only a year after the World Wide Web was released into public domain\cite{cernweb}.
 Now every handheld device utilizes a Fourier Transform in some fashion, from the cellular networks \& WiFi signals that connect us to the internet to the software that processes the images we take. But first, we should understand what a Fourier Transform is before we can understand its applications:
@@ -56,6 +57,8 @@ by Teach Spin are the main tools used in our exploration of the Fourier Transfor
     \caption{\label{fig:1}Oscilloscope (top) and Spectrum (bottom) view for a 50 kHz, 5 V sine wave superimposed with noise}
     \end{center}
 \end{figure}
+
+\section{Signal Recovery Under Noise} 
 For our first experiment, we analyzed an unknown signal hidden under noise. Initially, as a proof of concept, we had a small amount of noise applied to a distinct strong signal.
 As shown in Fig. \ref{fig:1}, using the time domain approach (scope) demonstrates an interesting but indecipherable signal.
 In the partnering image is the SR770 display in which it is almost impossible to miss the pure sinusoidal. 
@@ -80,10 +83,10 @@ Noise randomly sends power to each frequency with equal chance.
 Therefore if one takes an average of noise over enough time, the averages should resolve to a flat uniform distribution in the frequency domain.
 
  \begin{figure}[H]
-     \centering
-     \includegraphics[width=0.3\textwidth]{Averaged Noise.jpg}
-     \caption{Spectral Density of Noise}
-     \label{fig:fig 3}
+    \centering
+    \includegraphics[width=0.3\textwidth]{Averaged Noise.jpg}
+    \caption{Spectral Density of Noise}
+    \label{fig:fig 3}
  \end{figure}
 
 Any interesting signal should be easily visible over the line as its average will vary from this.
@@ -106,6 +109,8 @@ the frequency-duration ``uncertainty principle''
 This dimensionless magic number attaches a frequency-resolution condition on the SR770. For example,
 the SR770 defines its magic number (with a default acquisition time of 4 ms for the full 100 kHz span)
 to be $400$, so for a frequency span of 195 Hz shown in Fig \ref{fig:2} the acquisition time for a single measurement is $400 / 195 = 2$ s. In addition, averaging 64 measurements to decrease the spectral density of the noise floor adds computational time as well. So we had to repeat this for roughly 170 measurements from 0 to 33.5 kHz as we swept across the full span until we found our small signal at 33.572 kHz shown in Fig \ref{fig:2}.
+
+\section{AM Radio Reception}
 
 Beyond just detection, the Fourier Transform can be useful in analyzing the properties of waveforms as well.
 In AM radio, program content consists of a variable signal, and the product of that and a pure carrier frequency creates an amplitude-modulated signal containing program data.
@@ -132,6 +137,8 @@ Using Fourier Transformations and the frequency domain we can see each station a
 \end{center}
 \end{figure}
 
+\section{The Fluxgate Magnetometer}
+
 Our third attempt at utilizing the Fourier methodology involves magnetic fields. 
 In our next experiment, we examined how the Fourier Transform could be used with a magnetometer to ascertain the information content of magnetic fields.
 The fluxgate magnetometer is a sensor made up of a ferromagnetic core---specifically ferrite material to reduce eddy current loss---wrapped by a primary driving coil and secondary pickup coil. The driving coil sends an AC to the solenoid which generates an AC magnetic field. As the fluxgate sensor is subject to an external magnetic field, the generated emf is picked up by the secondary coil as an AC signal. The Fourier decomposition of this AC signal contains a 2nd harmonic component in response to the magnetization of the ferromagnetic core which is highly sensitive to an external magnetic field.
@@ -145,10 +152,40 @@ Later on, we noticed that the fluxgate sensor was also affected by the magnetic 
     \label{fig:enter-label}
 \end{figure}
 
+\section{Methods}
+
+% figure of exp1_1.pdf
+\begin{figure}[H]
+    \includegraphics[width=0.45\textwidth]{exp1_1.pdf}
+    \caption{Control setup for Signal Under Noise}
+    \label{fig:exp1}
+\end{figure}
+
+% figure of exp1_2.pdf
+\begin{figure}[H]
+    \includegraphics[width=0.45\textwidth]{exp1_2.pdf}
+    \caption{Hidden Signal Under Noise from Buried Treasure}
+    \label{fig:exp2}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=0.45\textwidth]{exp2_1.pdf}
+    \caption{Experimental setup for AM radio reception Part I}
+    \label{fig:AM1}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=0.45\textwidth]{exp2_2.pdf}
+    \caption{Experimental setup for AM radio reception Part II}
+    \label{fig:AM2}
+\end{figure}
+
+\section{Conclusion}
 Hopefully, the varied nature of our application and analyses will motivate the reader that the Fourier Transformation is a useful lens for any signal analysis.
 Viewing signals by their frequency domain should be, in the minds of these authors, a fundamental aspect of any data collection.
 From radio telescope data to improved sound recognition in audio processing, Fourier demonstrates often unknown properties.
 It can be applied to sensor data like in the magnetometer, but as we showed in the case of amplitude-modulated waveforms, it can also reveal emergent properties in cases that may not have called for its use.
+
 
 \nocite{Butz2015}
 \bibliography{myrefs}
